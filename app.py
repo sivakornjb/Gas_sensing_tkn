@@ -923,7 +923,7 @@ that extracts kinetic parameters from gas sensor response curves.
 ### Model Outputs (7 parameters)
 | Parameter | Description | Notes |
 |-----------|-------------|-------|
-| `t_ads` | Adsorption time fraction | Softmax (sum = 1) |
+| `t_ads` | Adsorption time fraction | Softmax |
 | `t_des` | Desorption time fraction | Softmax |
 | `t_stableD` | Stable desorption fraction | Softmax |
 | `t_stableA` | Stable adsorption fraction | Softmax |
