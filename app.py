@@ -630,13 +630,13 @@ with tab_visualize:
     col_a, col_b = st.columns(2)
     with col_a:
         viz_curves_file = st.file_uploader(
-            "Curves (.pkl or .csv)",
+            "Curves",
             type=["pkl", "csv"],
             key="viz_curves",
         )
     with col_b:
         viz_cond_file = st.file_uploader(
-            "Conditions with true labels (.pkl or .csv)  [optional]",
+            "Conditions (true labels) [optional]",
             type=["pkl", "csv"],
             key="viz_cond",
         )
@@ -799,11 +799,11 @@ with tab_retrain:
     col_ft1, col_ft2 = st.columns(2)
     with col_ft1:
         _curves_format_guide("retrain")
-        ft_curves_file = st.file_uploader("Training curves (.pkl or .csv)",
+        ft_curves_file = st.file_uploader("Training curves",
                                           type=["pkl", "csv"], key="ft_curves")
     with col_ft2:
         _conditions_format_guide("retrain")
-        ft_cond_file = st.file_uploader("Training conditions (.pkl or .csv)",
+        ft_cond_file = st.file_uploader("Training conditions",
                                         type=["pkl", "csv"], key="ft_cond")
 
     ft_curves_df = None
@@ -971,16 +971,4 @@ model.zip
 └── scaler_noise.pkl
 ```
 
----
-
-### Deployment
-
-```bash
-# Local
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-For public sharing → push to GitHub and deploy on **Streamlit Cloud** (share.streamlit.io).
-See `DEPLOY.md` for step-by-step instructions.
 """)
