@@ -4,10 +4,19 @@ import zipfile
 import tempfile
 import math
 import inspect
+import warnings
+
+# Suppress TF C++ info/warning logs (must be set before importing tensorflow)
+os.environ.setdefault('TF_CPP_MIN_LOG_LEVEL', '2')
+# Suppress Python-level UserWarnings from Keras and sklearn
+warnings.filterwarnings('ignore', category=UserWarning, module='keras')
+warnings.filterwarnings('ignore', category=UserWarning, module='sklearn')
+warnings.filterwarnings('ignore', message='.*InconsistentVersionWarning.*')
 
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+tf.get_logger().setLevel('ERROR')
 import joblib
 from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split
@@ -97,6 +106,10 @@ class TemporalAttentionPooling(tf.keras.layers.Layer):
         self.score_dense = tf.keras.layers.Dense(1)
         self.softmax     = tf.keras.layers.Softmax(axis=1)
         self.multiply    = tf.keras.layers.Multiply()
+
+    def build(self, input_shape):
+        self.score_dense.build(input_shape)
+        super().build(input_shape)
 
     def call(self, x):
         score    = self.score_dense(x)
