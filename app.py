@@ -626,15 +626,16 @@ with tab_predict:
 with tab_visualize:
     st.header("Visualize Results")
 
-    _curves_format_guide("viz")
     col_a, col_b = st.columns(2)
     with col_a:
+        _curves_format_guide("viz")
         viz_curves_file = st.file_uploader(
             "Curves",
             type=["pkl", "csv"],
             key="viz_curves",
         )
     with col_b:
+        _conditions_format_guide("viz")
         viz_cond_file = st.file_uploader(
             "Conditions (true labels) [optional]",
             type=["pkl", "csv"],
